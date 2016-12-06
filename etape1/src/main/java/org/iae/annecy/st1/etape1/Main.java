@@ -34,22 +34,12 @@ public class Main {
 	/**
 	 * Controller permettant le traitement des actions d'exemple.
 	 */
-	private static MainController mainController;
+	//private static MainController mainController;
 
-	static {
-		Main.mainController = new MainController();
-	}
+	//static Main.mainController = new MainController();
+	
 
-	/**
-	 * Lance l'application.
-	 * 
-	 * @param args
-	 *            command line parameters
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
-	 * @throws ClassNotFoundException 
-	 */
-	public static void main(final String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+	public static void main(final String[] args) {
 		/*initUserModel();
 
 		final DataView userData = mainController.get("user:display");
@@ -59,190 +49,87 @@ public class Main {
 		
 		Scanner s = new Scanner(System.in);
 		
-		Catalogue C1 = null;				// Etape de désérialisation ==> Chargement en Input.
-		try {
-			File fichier = new File ("Desktop");
-			ObjectInputStream ois = new ObjectInputStream (new FileInputStream("fichier"));
-			
-			C1 = (Catalogue) ois.readObject();
-			
-		}
-		catch (FileNotFoundException E) {
-			C1 = new Catalogue();
-		}
+		final Catalogue catalogue1 = new Catalogue();				// Etape de désérialisation ==> Chargement en Input.
+		
+		CatalogueController Cat1 = new CatalogueController (catalogue1);
 		
 		
-		
-		
-		
-		CatalogueController Cat1 = new CatalogueController (C1);
-		
-		
-		int choixproduit=0;
 		int choixattribut=0;
+		int choixmenu = 0;
 		
-		
-		Produit P1 = new Produit ("997", "léger et jaune", 9.99, "Cahier");
-		Produit P2 = new Produit ("783", "lourd et bleu", 3.99, "Gomme");
+		final Produit Produit1 = new Produit ("997", "léger et jaune", "Réputé par sa marque et la qualité de son papier", 9.99, "Cahier");
+		final Produit Produit2 = new Produit ("783", "lourd et bleu", "Efficace pour supprimer vos plus grosses ratures", 3.99, "Gomme");
 	
+		catalogue1.ajouterProduit(Produit1);
+		catalogue1.ajouterProduit(Produit2);
 		
-		System.out.println("Listing de tous les produits du catalogue :\n");
 		
-		C1.ajouterProduit(P1);
-		C1.ajouterProduit(P2);
-		
-		//C1.afficherListeProduits();
-		
-		System.out.println(Cat1.get());
-		
-		// AffichageMenu
-		String chProd = null;
-		int choixMenu = 0;
-		
-		do {
-			affichageMenu();
-			choixMenu = s.nextInt();
-			while (choixMenu != 1 && choixMenu != 2 && choixMenu !=3){
-				System.out.println("Une erreur est apparue ! Veuillez rentrer 1= Modification de produit "
-						+ "			/ 2= Afficher les produits / 3= Ajouter un produit");
-			}
-			
-			if(choixMenu == 1){
-			
-				System.out.println("Veuillez indiquer la référence du produit à modifier :" );
-					CatalogueController cat = new CatalogueController (C1);
-					System.out.println(cat.get());
-					chProd = s.next();
-			}
-			
-			
-			System.out.println("Quel attribut souhaitez-vous changer ? " + "1- Description" 
-								+ "2- Description longue" + "3- Prix" + "4- Nom");
-			
-			int Sims = s.nextInt();
-				while (Sims !=1 && Sims !=2 && Sims !=3 && Sims !=4){
-					System.out.println("Une erreur est apparue ! Veuillez rentrer 1- Description" 
-								+ "2- Description longue" + "3- Prix" + "4- Nom");
-					Sims = s.next();
-				}
-		
-		// MENU PRINCIPAL REGROUPANT : l'affichage, la modification, la recherche et l'ajout
-		
-		/* System.out.println("Menu principal:");
-		
-		int menu = 0;
-		
-		do
-		{
-				System.out.println(" (1) --> Afficher tous les produits."); 
-				System.out.println(" (2) --> Modifier un produit.");
-				System.out.println(" (3) --> Rechercher un produit.");
-				System.out.println(" (4) --> Ajouter un produit.");
-			
-				
-				System.out.println("Veuillez sélectionner le numéro adéquat à votre recherche :");
-				menu = s.nextInt();
-				
-				switch (menu)
-				{
-				
+		System.out.println("-------------------------------------------- Menu Catalogue --------------------------------------------\n");
+		System.out.println("1/ Afficher   -   2/ Modifier   -   3/ Recherche produit par reference   -   4/ Ajouter   -   5/ Quitter");
+		choixmenu=s.nextInt();
+		while(choixmenu < 5){
+			switch(choixmenu){
+				case 1:
+					System.out.println(Cat1.get());
 
-				case 1 : 
-					System.out.println(Cat1.get()); 	//Afficher tous les produits.
+					System.out.println("-------------------Menu Catalogue-------------------\n");
+					System.out.println("1: Afficher   -   2: Modifier   -   3: Recherche produit par reference   -   4:Ajouter   -   5:Quitter");
+					choixmenu=s.nextInt();
 					break;
-				case 2 :
-					C1.modifierattribut(choixproduit,choixattribut);		// Modifier un produit
-					break;
-				case 3 :
-					System.out.println("SVP, entrer la nouvelle reference : ");
-					String r=s.next();
-					C1.chercheProduit(r);			    // Chercher un produit dans le catalogue.
-					break;
-				case 4 :
-					System.out.println("SVP, entrer la nouvelle reference : ");
-					r=s.next();
-					
-					System.out.println("Entrer le nouveau prix : ");
-					double p=s.nextDouble();
-					
-					System.out.println("Entrer la nouvelle description : ");
-					String d=s.next();
-					
-					System.out.println("Entrer la nouveau nom : ");
-					String n=s.next();
-					
-					C1.ajouterProduit(new Produit(r,d,p,n));									// ajouter un produit
-					break;
-				default :
-						System.out.println("Ce que vous avez sélectionné n'est pas valide");
+				case 2:
+					System.out.println("Veuillez entrer la réference du produit que vous souhaitez rechercher :");
+					String ref=s.next();
+					Produit p=catalogue1.chercheProduit(ref);
+					if(p == null){
+						System.out.println("Le produit demandé n'existe pas.");
+					}else{
+						int prod=catalogue1.chercheProduitid(ref);
 						
-		}
-		}while (menu != 4);		
-		*/
-		
-		
-		
-		System.out.println("\nAjouter un produit au catalogue 1: OUI / 2: NON\n");
-		int t=s.nextInt();
-		
-		if(t==1){
-			System.out.println("SVP, entrer la nouvelle reference : ");
-			String r=s.next();
-			
-			System.out.println("Entrer le nouveau prix : ");
-			double p=s.nextDouble();
-			
-			System.out.println("Entrer la nouvelle description : ");
-			String d=s.next();
-			
-			System.out.println("Entrer la nouveau nom : ");
-			String n=s.next();
-			
-			C1.ajouterProduit(new Produit(r,d,p,n));
-			
-			File fichier = new File ("Desktop");			// 1ere étape pour sérializer = Sauvegarde en Output.
-			ObjectOutputStream oos = new ObjectOutputStream (new FileOutputStream (fichier));
-			oos.writeObject(C1);
-		}
-		
-		
-		
-		
-		System.out.println("\nVeuillez taper la référence du produit que vous cherchez :");
-		
-		String r=s.nextLine();
-		Produit p= C1.chercheProduit(r);			// CETTE ETAPE EST ZAPPEE.. ??
-		
-		
-		
-		System.out.println("\nQuel attribut voulez-vous modifier ?");
-		
-		System.out.println("1 : Nom"); //> antislash T == pour le menu sur une ligne
-		System.out.println("2 : Description");
-		System.out.println("3 : Prix");
-		
-		choixattribut = s.nextInt();
-		
-		C1.modifierattribut(choixproduit,choixattribut);
-		
-		//C1.afficherListeProduits();
-		System.out.println(Cat1.get());
-		
-	}
+						System.out.println("1: Nom	-	2: Description	-	3: Prix");
+						System.out.println("Veuillez sélectionner le numero de l'attribut que vous-voulez modifier :");
+						choixattribut = s.nextInt();
+						catalogue1.modifierattribut(prod-1, choixattribut);
+					}
 
-	
-	private static void initUserModel() {
+					System.out.println("Menu Catalogue");
+					System.out.println("1: Afficher	  -   2: Modifier   -  3: Rechercher produit par sa référence  -  4:Ajouter  -  5:Quitter\n");
+					choixmenu=s.nextInt();
+					break;		
+				case 3:
+					System.out.println("Veuillez entrer la réference du produit à rechercher :\n");
+					String re=s.next();
+					Produit pr=catalogue1.chercheProduit(re);
+					if(pr == null){
+						System.out.println("Le produit demandé n'existe pas.\n");
+					}else{
+						System.out.println("Produit trouvé :\n");
+						pr.AfficherProduit();
+					}
+					
+					System.out.println("-------------------Menu Catalogue-------------------\n");
+					System.out.println("1: Afficher   -   2: Modifier   -   3: Recherche produit par reference   -   4:Ajouter   -   5:Quitter\n");
+					choixmenu=s.nextInt();
+					break;
+				case 4:
+					
+					Produit nouveaup = new Produit();
+					break;
+					
+			}
+			
+			
+		}
+		
+					
+	}
+}
+
+		
+
+			
+	/*private static void initUserModel() {
 		final UserModel userModel = new UserModel();
 		userModel.register(mainController);
-	}
 	
-	public static void affichageMenu(){
-		System.out.println("----------Menu---------"
-					+ "Modifier un produit" + "Afficher liste des produits" 
-					+ "Afficher un produit");
-		
-	}
+	}*/
 	
-	
-	
-}

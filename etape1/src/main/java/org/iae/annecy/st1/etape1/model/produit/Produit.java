@@ -5,13 +5,24 @@ public class Produit {
 	private String Description;
 	private double Prix;
 	private String Nom;
+	private String DescLongue;
+	
+	
 		
 	
-	public Produit(String reference, String description, double prix,String nom) {	// Constructeur.
+	public String getDescLongue() {
+		return DescLongue;
+	}
+	public void setDescLongue(String descLongue) {
+		DescLongue = descLongue;
+	}
+
+	public Produit(String reference, String description, String DescriptionLongue, double prix,String nom) {	// Constructeur.
 		Reference = reference;
 		Description = description;
 		Prix = prix;
 		this.Nom = nom;
+		this.DescLongue = DescriptionLongue;
 	}
 	
 	public String getNom() {

@@ -9,7 +9,7 @@ import org.iae.annecy.st1.etape1.model.produit.Produit;
 			private Catalogue cat;
 	
 		public String get (){		// ==> Reviens au même qu'un S.O.P, sauf ca renvoit sur une variable de chaine de caractères.
-		return this.cat.afficherListeProduits();
+			return this.cat.afficherListeProduits();
 		}
 
 		public CatalogueController (Catalogue c ){
