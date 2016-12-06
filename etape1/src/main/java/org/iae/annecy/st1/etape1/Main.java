@@ -112,7 +112,23 @@ public class Main {
 					break;
 				case 4:
 					
-					Produit nouveaup = new Produit();
+					System.out.println("Veuillez renseigner le nom du produit :\n");
+					String n = s.next();
+					System.out.println("Veuillez renseigner la référence du produit :\n");
+					String r = s.next();
+					System.out.println("Veuillez entrer la description courte du produit :\n");
+					String m = s.nextLine();
+					System.out.println("Veuillez entrer la description longue du produit :\n");
+					String l = s.nextLine();
+					System.out.println("Veuillez renseigner le prix :\n");
+					double prix = s.nextInt();
+					
+					Produit nouveaup = new Produit(r,m,l,prix,n);
+					catalogue1.ajouterProduit(nouveaup);
+				
+					System.out.println("-------------------Menu Catalogue-------------------\n");
+					System.out.println("1: Afficher   -   2: Modifier   -   3: Recherche produit par reference   -   4:Ajouter   -   5:Quitter\n");
+					choixmenu=s.nextInt();
 					break;
 					
 			}
