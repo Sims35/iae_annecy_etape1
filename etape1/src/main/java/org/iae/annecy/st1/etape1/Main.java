@@ -242,7 +242,7 @@ public class Main {
 
 		}
 
-		// MENU GESTION DES CLIENTS ... AJOUTS....
+		// MENU GESTION DES CLIENTS .... AJOUTS....
 
 		ConsoleHelper.display(
 				"------------------------------------------------- Menu Gestion Client(s) ---------------------------------------------------\n");
