@@ -1,65 +1,68 @@
 package org.iae.annecy.st1.etape1.model.produit;
 
-public class Produit {
-	private String Reference;
-	private String Description;
-	private double Prix;
-	private String Nom;
-	private String DescLongue;
-	
-	
-		
-	
-	public String getDescLongue() {
-		return DescLongue;
-	}
-	public void setDescLongue(String descLongue) {
-		DescLongue = descLongue;
+import java.io.Serializable;
+
+public class Produit implements Serializable {
+	private String reference;
+	private String description;
+	private double prix;
+	private String nom;
+	private String descLongue;
+
+	public String getdescLongue() {
+		return descLongue;
 	}
 
-	public Produit(String reference, String description, String DescriptionLongue, double prix,String nom) {	// Constructeur.
-		Reference = reference;
-		Description = description;
-		Prix = prix;
-		this.Nom = nom;
-		this.DescLongue = DescriptionLongue;
-	}
-	
-	public String getNom() {
-		return Nom;
-	}
-	public void setNom(String nom) {
-		Nom = nom;
+	public void setdescLongue(String descLongue) {
+		this.descLongue = descLongue;
 	}
 
+	public Produit(String reference, String description, String descriptionLongue, double prix, String nom) { // Constructeur.
+		this.reference = reference;
+		this.description = description;
+		this.prix = prix;
+		this.nom = nom;
+		this.descLongue = descriptionLongue;
+	}
 
-	public String getReference() {
-		return Reference;
+	public String getnom() {
+		return nom;
 	}
-	public void setReference(String reference) {
-		Reference = reference;
+
+	public void setnom(String nom) {
+		this.nom = nom;
 	}
-	
-	public String getDescription() {
-		return Description;
+
+	public String getreference() {
+		return reference;
 	}
-	public void setDescription(String description) {
-		Description = description;
+
+	public void setreference(String reference) {
+		this.reference = reference;
 	}
-	
-	public double getPrix() {
-		return Prix;
+
+	public String getdescription() {
+		return description;
 	}
-	public void setPrix(double prix) {
-		Prix = prix;
+
+	public void setdescription(String description) {
+		this.description = description;
 	}
-	
-	public String AfficherProduit(){	// Méthode affichage.
+
+	public double getprix() {
+		return prix;
+	}
+
+	public void setprix(double prix) {
+		this.prix = prix;
+	}
+
+	public String afficherProduit() { // Méthode affichage.
 		String t = "";
-		t +="\nLe produit : "+ this.getNom() + "à une référence qui est : " + this.getReference() + ". " +
-							"La Description du produit est : " + this.getDescription() + ". " 
-							+ " Le prix du produit est de " + this.getPrix() + "€.\n";
+		t += "\nLe produit : " + this.getnom() + "à une référence qui est : " + this.getreference() + ". "
+				+ "La description du produit est : " + this.getdescription() + ". " + " Le prix du produit est de "
+				+ this.getprix() + "€.\n";
 		return t;
 	}
-	
+
 }
