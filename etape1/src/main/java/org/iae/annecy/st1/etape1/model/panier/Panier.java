@@ -2,6 +2,7 @@ package org.iae.annecy.st1.etape1.model.panier;
 
 import java.util.ArrayList;
 
+import org.iae.annecy.st1.etape1.model.catalogue.Catalogue;
 import org.iae.annecy.st1.etape1.model.client.Client;
 import org.iae.annecy.st1.etape1.model.produit.Produit;
 import org.iae.annecy.st1.tools.ConsoleHelper;
@@ -35,7 +36,7 @@ public class Panier {
 			total = nproduit.getprix() + total;
 		}
 
-		ConsoleHelper.display("Le prix total est : " + total);
+		ConsoleHelper.display("Le prix total est : " + total + " €.\n");
 	}
 
 	public ArrayList<Produit> getProduits() {
@@ -62,7 +63,11 @@ public class Panier {
 		this.prixTotal = prixTotal;
 	}
 
-	// afficher prix avec le produit.getprix
-	// Créer une fonction addition des prix des produits du panier.
+	public void monmenupanier(Catalogue catalogue1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }

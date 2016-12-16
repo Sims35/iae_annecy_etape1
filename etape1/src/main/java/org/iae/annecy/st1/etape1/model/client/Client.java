@@ -1,12 +1,11 @@
 package org.iae.annecy.st1.etape1.model.client;
 
-import org.iae.annecy.st1.tools.ConsoleHelper;
-
 public class Client {
 	private String nom;
 	private String prenom;
 	private int numeroClient;
 	private int codePromotionnel;
+	
 
 	public Client(String nom, String prenom, int numeroClient, int codePromotionnel) { // Constructeur.
 		this.nom = nom;
@@ -53,5 +52,5 @@ public class Client {
 				+ this.getnumeroClient() + ".\nCode promotionnel (FACULTATIF !) : " + this.getcodePromotionnel() + ".";
 		return t;
 	}
-
+	
 }

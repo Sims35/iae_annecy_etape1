@@ -59,7 +59,7 @@ public class Produit implements Serializable {
 
 	public String afficherProduit() { // Méthode affichage.
 		String t = "";
-		t += "\nLe produit : " + this.getnom() + "à une référence qui est : " + this.getreference() + ". "
+		t += "\nLe produit : " + this.getnom() + " à une référence qui est : " + this.getreference() + ". "
 				+ "La description du produit est : " + this.getdescription() + ". " + " Le prix du produit est de "
 				+ this.getprix() + "€.\n";
 		return t;
